@@ -1,0 +1,28 @@
+spring:
+    oauth2:
+      client:
+        registration:
+            google:
+                client-id: <your-client-id>
+                client-secret: <your-client-secret>
+                # ??? ?? ? ????? ? URI
+                redirect-uri: "http://localhost:8080/login/oauth/google"
+                # ??? ? ??? ??
+                scope: email, profile
+            naver:
+                client-id: <your-client-id>
+                client-secret: <your
+                redirect-uri: "http://localhost:8080/login/oauth/naver"
+                scope: name, email
+            kakao:
+                client-id: <your-client-id>
+                client-secret: <your-client-secret>
+                redirect-uri: "http://localhost:8080/login/oauth/kakao"
+                scope: profile_nickname, profile_image
+
+    mvc:
+        static-path-pattern: /**
+    web:
+      resources:
+          static-locations: classpath:/static/
+
