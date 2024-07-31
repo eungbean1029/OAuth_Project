@@ -1,6 +1,6 @@
 package com.eungbean.oauth_service.naver.dto;
 
-import com.eungbean.oauth_service.oAuth.BaseOAuth2UserInfo;
+import com.eungbean.oauth_service.oAuth.OAuth2UserInfo;
 
 import java.util.Map;
 
@@ -9,7 +9,7 @@ public record NaverOAuth2UserInfo(
         String name,
         String email,
         Map<String, Object> attributes
-) implements BaseOAuth2UserInfo {
+) implements OAuth2UserInfo {
     public NaverOAuth2UserInfo(Map<String, Object> attributes) {
         this(
                 attributes.get("id").toString(),

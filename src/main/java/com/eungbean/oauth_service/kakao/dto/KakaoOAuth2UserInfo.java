@@ -1,46 +1,32 @@
 package com.eungbean.oauth_service.kakao.dto;
 
-import com.eungbean.oauth_service.oAuth.BaseOAuth2UserInfo;
+import com.eungbean.oauth_service.oAuth.OAuth2Provider;
+import com.eungbean.oauth_service.oAuth.OAuth2UserInfo;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
+import lombok.Getter;
 
 import java.util.Map;
-
+@Getter
+@Builder
 public record KakaoOAuth2UserInfo(
         String id,
-        String name,
-        String email,
-        String profileImage,
-        Map<String, Object> attributes
+        @JsonProperty("kakao_account")
+        KaKaoAccount kaKaoAccount
 
-) implements BaseOAuth2UserInfo {
-
-        public KakaoOAuth2UserInfo(Map<String, Object> attributes) {
-            this(
-                    attributes.get("id").toString(),
-                    attributes.get("properties").toString(),
-                    attributes.get("kakao_account").toString(),
-                    attributes.get("profile_image").toString(),
-                    attributes
-            );
-        }
-
+) implements OAuth2UserInfo {
     @Override
-    public String getId() {
-        return id;
+    public String getEmail() {
+        return null;
     }
-
-    @Override
-        public String getEmail() {
-            return email;
-        }
 
     @Override
     public String getName() {
-        return name;
+        return null;
     }
 
     @Override
-    public Map<String, Object> getAttributes() {
-        return attributes;
+    public OAuth2Provider getProvider() {
+        return null;
     }
-
 }

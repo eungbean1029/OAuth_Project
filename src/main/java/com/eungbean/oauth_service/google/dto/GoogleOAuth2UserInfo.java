@@ -1,6 +1,6 @@
 package com.eungbean.oauth_service.google.dto;
 
-import com.eungbean.oauth_service.oAuth.BaseOAuth2UserInfo;
+import com.eungbean.oauth_service.oAuth.OAuth2UserInfo;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -14,7 +14,7 @@ public record GoogleOAuth2UserInfo(
         String name,
         Map<String, Object> attributes
 
-) implements BaseOAuth2UserInfo {
+) implements OAuth2UserInfo {
 
     public GoogleOAuth2UserInfo(Map<String, Object> attributes) {
         this(
