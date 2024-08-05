@@ -5,9 +5,9 @@ public interface OAuth2ApiClient {
     OAuth2Provider oAuth2Provider();
 
     // AuthCode를 발급할 URL을 제공
-    String getAuthorizationUrl();
+//    String getAuthorizationUrl();
 
-    Object getAccessToken(OAuth2LoginRequset request);
+    String getAccessToken(OAuth2LoginRequset request);
 
-    Object getUserInfo(String accessToken);
+    OAuth2UserInfo getUserInfo(String accessToken);
 }

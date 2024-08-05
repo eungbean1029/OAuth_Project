@@ -1,41 +1,43 @@
 package com.eungbean.oauth_service.naver.dto;
 
+import com.eungbean.oauth_service.oAuth.OAuth2Provider;
 import com.eungbean.oauth_service.oAuth.OAuth2UserInfo;
-
-import java.util.Map;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 
 public record NaverOAuth2UserInfo(
-        String id,
-        String name,
-        String email,
-        Map<String, Object> attributes
+        @JsonProperty("response")
+        Response response
 ) implements OAuth2UserInfo {
-    public NaverOAuth2UserInfo(Map<String, Object> attributes) {
-        this(
-                attributes.get("id").toString(),
-                attributes.get("name").toString(),
-                attributes.get("email").toString(),
-                attributes
-        );
-    }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class Response {
+
+        private String id;
+        private String email;
+        private String name;
+    }
     @Override
     public String getId() {
-        return id;
+        return response().id;
     }
 
     @Override
     public String getEmail() {
-        return email;
+        return response.email;
     }
 
     @Override
     public String getName() {
-        return name;
+        return response.name;
     }
 
     @Override
-    public Map<String, Object> getAttributes() {
-        return attributes;
+    public OAuth2Provider getProvider() {
+        return OAuth2Provider.NAVER;
     }
+
 }
+
+

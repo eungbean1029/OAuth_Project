@@ -1,6 +1,8 @@
-package com.eungbean.oauth_service.kakao.service;
+package com.eungbean.oauth_service.google.service;
 
-import com.eungbean.oauth_service.kakao.config.KakaoOAuth2Config;
+import com.eungbean.oauth_service.google.config.GoogleOAuth2Config;
+import com.eungbean.oauth_service.google.dto.GoogleOAuth2Token;
+import com.eungbean.oauth_service.google.dto.GoogleOAuth2UserInfo;
 import com.eungbean.oauth_service.kakao.dto.KaKaoOAuth2Token;
 import com.eungbean.oauth_service.kakao.dto.KakaoOAuth2UserInfo;
 import com.eungbean.oauth_service.oAuth.OAuth2ApiClient;
@@ -22,23 +24,23 @@ import java.util.Objects;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class KakaoOAuth2Client implements OAuth2ApiClient {
+public class GoogleOAuth2Client implements OAuth2ApiClient {
 
-    private final KakaoOAuth2Config kakaoOAuth2Config;
+    private final GoogleOAuth2Config googleOAuth2Config;
 
     @Override
     public OAuth2Provider oAuth2Provider() {
-        return OAuth2Provider.KAKAO;
+        return OAuth2Provider.GOOGLE;
     }
 
 //    @Override
 //    public String getAuthorizationUrl() {
 //        return UriComponentsBuilder
 //                .fromUriString("https://kauth.kakao.com/oauth/authorize")
-//                .queryParam("client_id", kakaoOAuth2Config.clientId())
-//                .queryParam("redirect_uri", kakaoOAuth2Config.redirectUri())
+//                .queryParam("client_id", googleOAuth2Config.clientId())
+//                .queryParam("redirect_uri", googleOAuth2Config.redirectUri())
 //                .queryParam("response_type", "code")
-//                .queryParam("scope", String.join(",", kakaoOAuth2Config.scope()))
+//                .queryParam("scope", String.join(",", googleOAuth2Config.scope()))
 //                .build()
 //                .toUriString();
 //    }
@@ -48,12 +50,12 @@ public class KakaoOAuth2Client implements OAuth2ApiClient {
     public String getAccessToken(OAuth2LoginRequset request) {
         RestTemplate restTemplate = new RestTemplate();
         Map<String, String> params = request.authorizationParams();
-        params.put("client_id", kakaoOAuth2Config.clientId());
-        params.put("client_secret", kakaoOAuth2Config.clientSecret());
-        params.put("redirect_uri", kakaoOAuth2Config.redirectUri());
-        params.put("grant_type", kakaoOAuth2Config.authorizationGrantType());
+        params.put("client_id", googleOAuth2Config.clientId());
+        params.put("client_secret", googleOAuth2Config.clientSecret());
+        params.put("redirect_uri", googleOAuth2Config.redirectUri());
+        params.put("grant_type", googleOAuth2Config.authorizationGrantType());
 
-        KaKaoOAuth2Token token = restTemplate.postForObject(kakaoOAuth2Config.tokenUri(), params, KaKaoOAuth2Token.class);
+        GoogleOAuth2Token token = restTemplate.postForObject(googleOAuth2Config.tokenUri(), params, GoogleOAuth2Token.class);
         if (Objects.isNull(token)) {
             throw new RuntimeException("Failed to get access token");
         }
@@ -72,7 +74,8 @@ public class KakaoOAuth2Client implements OAuth2ApiClient {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        return restTemplate.postForObject(kakaoOAuth2Config.userInfoUri(), request, KakaoOAuth2UserInfo.class);
+        return restTemplate.postForObject(googleOAuth2Config.userInfoUri(), request, GoogleOAuth2UserInfo.class);
+
     }
 
     private HttpHeaders createUrlEncodedHttpHeaders() {
