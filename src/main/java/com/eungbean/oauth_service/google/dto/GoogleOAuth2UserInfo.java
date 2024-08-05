@@ -1,29 +1,18 @@
 package com.eungbean.oauth_service.google.dto;
 
-import com.eungbean.oauth_service.oAuth.BaseOAuth2UserInfo;
+import com.eungbean.oauth_service.oAuth.OAuth2Provider;
+import com.eungbean.oauth_service.oAuth.OAuth2UserInfo;
 import lombok.Builder;
 import lombok.Getter;
-
-import java.util.Map;
 
 @Builder
 @Getter
 public record GoogleOAuth2UserInfo(
         String id,
         String email,
-        String name,
-        Map<String, Object> attributes
+        String nickname
+) implements OAuth2UserInfo {
 
-) implements BaseOAuth2UserInfo {
-
-    public GoogleOAuth2UserInfo(Map<String, Object> attributes) {
-        this(
-                attributes.get("sub").toString(),
-                attributes.get("email").toString(),
-                attributes.get("name").toString(),
-                attributes
-        );
-    }
     @Override
     public String getId() {
         return id;
@@ -36,11 +25,12 @@ public record GoogleOAuth2UserInfo(
 
     @Override
     public String getName() {
-        return name;
+        return nickname;
     }
 
     @Override
-    public Map<String, Object> getAttributes() {
-        return attributes;
+    public OAuth2Provider getProvider() {
+        return OAuth2Provider.GOOGLE;
     }
+
 }
