@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public record GoogleOAuth2UserInfo(
+public record GoogleOAuth2UserInfoDto(
         String id,
         String email,
         String nickname

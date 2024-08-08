@@ -1,11 +1,9 @@
 package com.eungbean.oauth_service.user.controller;
 
-import com.eungbean.oauth_service.kakao.dto.KaKaoOAuth2LoginRequest;
-import com.eungbean.oauth_service.kakao.dto.KaKaoOAuth2Token;
+import com.eungbean.oauth_service.kakao.dto.KaKaoOAuth2LoginRequestDto;
 import com.eungbean.oauth_service.oAuth.service.OAuthLoginService;
-import com.eungbean.oauth_service.user.domain.User;
+import com.eungbean.oauth_service.base.domain.User;
 import com.eungbean.oauth_service.user.service.UserService;
-import com.nimbusds.oauth2.sdk.token.AccessToken;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -19,13 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 public class UserController {
         private final UserService userService;
-        private final OAuthLoginService oAuthLoginService;
 
-        @PostMapping("/login/kakao")
-        public void loginUser(@RequestBody KaKaoOAuth2LoginRequest request) {
-             log.info("KakaoOAuth2LoginRequest : {}", request);
-            // TODO : Kakao OAuth2.0 로그인 구현
-            Object token = oAuthLoginService.login(request);
+        @PostMapping
+        public void login(@RequestBody KaKaoOAuth2LoginRequestDto request) {
+            // TODO : 로그인 구현
         }
 
         @PostMapping("/signup")

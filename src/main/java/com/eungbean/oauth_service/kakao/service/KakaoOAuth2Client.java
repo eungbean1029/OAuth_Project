@@ -1,8 +1,8 @@
 package com.eungbean.oauth_service.kakao.service;
 
 import com.eungbean.oauth_service.kakao.config.KakaoOAuth2Config;
-import com.eungbean.oauth_service.kakao.dto.KaKaoOAuth2Token;
-import com.eungbean.oauth_service.kakao.dto.KakaoOAuth2UserInfo;
+import com.eungbean.oauth_service.kakao.dto.KaKaoOAuth2TokenDto;
+import com.eungbean.oauth_service.kakao.dto.KakaoOAuth2UserInfoDto;
 import com.eungbean.oauth_service.oAuth.OAuth2ApiClient;
 import com.eungbean.oauth_service.oAuth.OAuth2LoginRequset;
 import com.eungbean.oauth_service.oAuth.OAuth2Provider;
@@ -14,7 +14,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Map;
 import java.util.Objects;
@@ -53,7 +52,7 @@ public class KakaoOAuth2Client implements OAuth2ApiClient {
         params.put("redirect_uri", kakaoOAuth2Config.redirectUri());
         params.put("grant_type", kakaoOAuth2Config.authorizationGrantType());
 
-        KaKaoOAuth2Token token = restTemplate.postForObject(kakaoOAuth2Config.tokenUri(), params, KaKaoOAuth2Token.class);
+        KaKaoOAuth2TokenDto token = restTemplate.postForObject(kakaoOAuth2Config.tokenUri(), params, KaKaoOAuth2TokenDto.class);
         if (Objects.isNull(token)) {
             throw new RuntimeException("Failed to get access token");
         }
@@ -72,7 +71,7 @@ public class KakaoOAuth2Client implements OAuth2ApiClient {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        return restTemplate.postForObject(kakaoOAuth2Config.userInfoUri(), request, KakaoOAuth2UserInfo.class);
+        return restTemplate.postForObject(kakaoOAuth2Config.userInfoUri(), request, KakaoOAuth2UserInfoDto.class);
     }
 
     private HttpHeaders createUrlEncodedHttpHeaders() {

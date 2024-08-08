@@ -1,5 +1,5 @@
 package com.eungbean.oauth_service.user.service;
-import com.eungbean.oauth_service.user.domain.User;
+import com.eungbean.oauth_service.base.domain.User;
 
 import java.util.Optional;
 

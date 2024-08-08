@@ -3,8 +3,8 @@ package com.eungbean.oauth_service.kakao.dto;
 import lombok.Builder;
 
 @Builder
-public record KaKaoAccount(
+public record KaKaoAccountDto(
         String email,
-        KaKaoProfile kaKaoProfile
+        KaKaoProfileDto kaKaoProfileDto
 ) {
 }

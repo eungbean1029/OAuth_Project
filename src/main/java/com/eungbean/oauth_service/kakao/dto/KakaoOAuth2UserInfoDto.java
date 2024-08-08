@@ -6,13 +6,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.Map;
 @Getter
 @Builder
-public record KakaoOAuth2UserInfo(
+public record KakaoOAuth2UserInfoDto(
         String id,
         @JsonProperty("kakao_account")
-        KaKaoAccount kaKaoAccount
+        KaKaoAccountDto kaKaoAccountDto
 
 ) implements OAuth2UserInfo {
     @Override

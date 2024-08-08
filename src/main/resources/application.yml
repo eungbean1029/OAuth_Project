@@ -37,10 +37,10 @@ spring:
                 tokenUri: https://kauth.kakao.com/oauth/token
                 userInfoUri: https://kapi.kakao.com/v2/user/me
                 scope: profile_nickname, profile_image
-
     mvc:
         static-path-pattern: /**
     web:
       resources:
           static-locations: classpath:/static/
+
 

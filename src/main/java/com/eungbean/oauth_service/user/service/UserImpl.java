@@ -1,6 +1,6 @@
 package com.eungbean.oauth_service.user.service;
 
-import com.eungbean.oauth_service.user.domain.User;
+import com.eungbean.oauth_service.base.domain.User;
 import com.eungbean.oauth_service.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

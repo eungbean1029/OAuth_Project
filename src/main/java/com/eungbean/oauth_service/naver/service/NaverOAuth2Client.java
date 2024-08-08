@@ -1,10 +1,8 @@
 package com.eungbean.oauth_service.naver.service;
 
-import com.eungbean.oauth_service.google.dto.GoogleOAuth2Token;
-import com.eungbean.oauth_service.google.dto.GoogleOAuth2UserInfo;
 import com.eungbean.oauth_service.naver.config.NaverOAuth2Config;
-import com.eungbean.oauth_service.naver.dto.NaverOAuth2Token;
-import com.eungbean.oauth_service.naver.dto.NaverOAuth2UserInfo;
+import com.eungbean.oauth_service.naver.dto.NaverOAuth2TokenDto;
+import com.eungbean.oauth_service.naver.dto.NaverOAuth2UserInfoDto;
 import com.eungbean.oauth_service.oAuth.OAuth2ApiClient;
 import com.eungbean.oauth_service.oAuth.OAuth2LoginRequset;
 import com.eungbean.oauth_service.oAuth.OAuth2Provider;
@@ -54,7 +52,7 @@ public class NaverOAuth2Client implements OAuth2ApiClient {
         params.put("redirect_uri", naverOAuth2Config.redirectUri());
         params.put("grant_type", naverOAuth2Config.authorizationGrantType());
 
-        NaverOAuth2Token token = restTemplate.postForObject(naverOAuth2Config.tokenUri(), params, NaverOAuth2Token.class);
+        NaverOAuth2TokenDto token = restTemplate.postForObject(naverOAuth2Config.tokenUri(), params, NaverOAuth2TokenDto.class);
         if (Objects.isNull(token)) {
             throw new RuntimeException("Failed to get access token");
         }
@@ -73,7 +71,7 @@ public class NaverOAuth2Client implements OAuth2ApiClient {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        return restTemplate.postForObject(naverOAuth2Config.userInfoUri(), request, NaverOAuth2UserInfo.class);
+        return restTemplate.postForObject(naverOAuth2Config.userInfoUri(), request, NaverOAuth2UserInfoDto.class);
 
     }
 

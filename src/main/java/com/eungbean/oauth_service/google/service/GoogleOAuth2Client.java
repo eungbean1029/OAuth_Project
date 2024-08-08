@@ -1,10 +1,8 @@
 package com.eungbean.oauth_service.google.service;
 
 import com.eungbean.oauth_service.google.config.GoogleOAuth2Config;
-import com.eungbean.oauth_service.google.dto.GoogleOAuth2Token;
-import com.eungbean.oauth_service.google.dto.GoogleOAuth2UserInfo;
-import com.eungbean.oauth_service.kakao.dto.KaKaoOAuth2Token;
-import com.eungbean.oauth_service.kakao.dto.KakaoOAuth2UserInfo;
+import com.eungbean.oauth_service.google.dto.GoogleOAuth2TokenDto;
+import com.eungbean.oauth_service.google.dto.GoogleOAuth2UserInfoDto;
 import com.eungbean.oauth_service.oAuth.OAuth2ApiClient;
 import com.eungbean.oauth_service.oAuth.OAuth2LoginRequset;
 import com.eungbean.oauth_service.oAuth.OAuth2Provider;
@@ -16,7 +14,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Map;
 import java.util.Objects;
@@ -55,7 +52,7 @@ public class GoogleOAuth2Client implements OAuth2ApiClient {
         params.put("redirect_uri", googleOAuth2Config.redirectUri());
         params.put("grant_type", googleOAuth2Config.authorizationGrantType());
 
-        GoogleOAuth2Token token = restTemplate.postForObject(googleOAuth2Config.tokenUri(), params, GoogleOAuth2Token.class);
+        GoogleOAuth2TokenDto token = restTemplate.postForObject(googleOAuth2Config.tokenUri(), params, GoogleOAuth2TokenDto.class);
         if (Objects.isNull(token)) {
             throw new RuntimeException("Failed to get access token");
         }
@@ -74,7 +71,7 @@ public class GoogleOAuth2Client implements OAuth2ApiClient {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        return restTemplate.postForObject(googleOAuth2Config.userInfoUri(), request, GoogleOAuth2UserInfo.class);
+        return restTemplate.postForObject(googleOAuth2Config.userInfoUri(), request, GoogleOAuth2UserInfoDto.class);
 
     }
 

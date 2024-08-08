@@ -4,9 +4,8 @@ import com.eungbean.oauth_service.oAuth.OAuth2Provider;
 import com.eungbean.oauth_service.oAuth.OAuth2UserInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 
-public record NaverOAuth2UserInfo(
+public record NaverOAuth2UserInfoDto(
         @JsonProperty("response")
         Response response
 ) implements OAuth2UserInfo {

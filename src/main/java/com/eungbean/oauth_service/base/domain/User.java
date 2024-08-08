@@ -1,9 +1,10 @@
-package com.eungbean.oauth_service.user.domain;
+package com.eungbean.oauth_service.base.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Generated;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -15,7 +16,9 @@ import lombok.RequiredArgsConstructor;
 public class User {
 
     @Id
+    @Generated
     private String id;
+
     private String name;
     private String email;
     private String socialId;

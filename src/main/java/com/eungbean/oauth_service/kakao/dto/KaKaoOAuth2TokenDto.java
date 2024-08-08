@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Builder
-public record KaKaoOAuth2Token(
+public record KaKaoOAuth2TokenDto(
         String accessToken,
         String tokenType,
         String refreshToken,

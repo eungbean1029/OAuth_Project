@@ -1,4 +1,4 @@
-package com.eungbean.oauth_service.kakao.dto;
+package com.eungbean.oauth_service.google.dto;
 
 import com.eungbean.oauth_service.oAuth.OAuth2LoginRequset;
 import com.eungbean.oauth_service.oAuth.OAuth2Provider;
@@ -10,13 +10,13 @@ import java.util.Map;
 
 @Getter
 @NoArgsConstructor
-public class KaKaoOAuth2LoginRequest implements OAuth2LoginRequset {
+public class GoogleOAuth2LoginRequestDto implements OAuth2LoginRequset {
 
     private String authCode;
 
     @Override
     public OAuth2Provider oAuth2Provider() {
-        return OAuth2Provider.KAKAO;
+        return OAuth2Provider.GOOGLE;
     }
 
     @Override
